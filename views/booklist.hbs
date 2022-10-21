@@ -1,0 +1,36 @@
+<h2>My Books - ({{books.length}})</h2>
+{{#if books}}
+    <div class="table-responsive-sm">
+        <table class="table table-hover">
+            <tread>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th class="d-print-none">
+                        <a class="btn btn-sm btn-success" href="/addbookform">Add Book</a>
+                    </th>
+                </tr>
+            </tread>
+            <tbody>
+                {{#each books}}
+                    <tr>
+                        <td>{{this.title}}</td>
+                        <td colspan="2">{{this.author}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+{{/if}}
+{{#unless books}}
+    <div class="row mt-5">
+        <div class="col">
+            There are no registered books!
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <a class="btn btn-sm btn-success" href="/addbookform">Add Book</a>
+        </div>
+    </div>
+{{/unless}}
