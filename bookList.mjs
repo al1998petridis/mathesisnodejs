@@ -1,17 +1,34 @@
 import { Sequelize, Op, Model, DataTypes } from "sequelize";
 
-const sequelizer = new Sequelize({
-    host: 'localhost',
-    port: 5432,
-    dialect: 'postgres',
-    username: 'alepetpan',
-    password: 'A6949390540a',
-    database: 'myBooks',
-    logging: false,
-    define: {
-        timestamps: false
+// Heroku Postgres database
+const sequelizer = require('sequelize');
+sequelizer = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',    
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        },
+        logging: false,
+        define: {
+            timestamps: false
+        }
     }
-});
+})
+
+// For localhost Postgres database
+// const sequelizer = new Sequelize({
+//     host: 'localhost',
+//     port: 5432,
+//     dialect: 'postgres',
+//     username: 'alepetpan',
+//     password: 'A6949390540a',
+//     database: 'myBooks',
+//     logging: false,
+//     define: {
+//         timestamps: false
+//     }
+// });
 
 const Book = sequelizer.define('Book', {
     title: {
