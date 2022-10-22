@@ -1,8 +1,7 @@
 import { Sequelize, Op, Model, DataTypes } from "sequelize";
 
 // Heroku Postgres database
-const sequelizer = require('sequelize');
-sequelizer = new Sequelize(process.env.DATABASE_URL, {
+const sequelizer = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',    
     dialectOptions: {
         ssl: {
