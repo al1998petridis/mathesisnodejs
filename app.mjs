@@ -5,7 +5,6 @@ import { router } from './routes.mjs';
 import session, { Store } from 'express-session';
 import createMemoryStore from 'memorystore';
 
-
 const MemoryStore = createMemoryStore(session);
 
 const myBookSession = session({
