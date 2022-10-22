@@ -1,1 +1,1 @@
-web: node app-express.mjs
+web: node app.mjs
