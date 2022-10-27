@@ -5,8 +5,8 @@
             <tread>
                 <tr>
                     <th>Title</th>
-                    <th>Author</th>
-                    <th class="d-print-none">
+                    <th colspan="2">Author</th>
+                    <th colspan="3" class="d-print-none">
                         <a class="btn btn-sm btn-success" href="/addbookform">Add Book</a>
                     </th>
                 </tr>
@@ -16,6 +16,35 @@
                     <tr>
                         <td>{{this.title}}</td>
                         <td colspan="2">{{this.author}}</td>
+                        <td class="d-print-none">
+                            <a class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{@index}}">Delete Book</a>
+                            <!-- Button trigger modal -->
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal{{@index}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Delete Book</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h5>Are you sure you want to delete: <u>{{this.title}}</u>?</h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-danger">
+                                            <a style="color: #ffffff; text-decoration: none;" href="/delete/{{this.title}}">Delete</a>
+                                        </button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <th class="d-print-none">
+                                <a class="btn btn-sm btn-info" href="/addcommentform/{{this.title}}">Comment</a>
+                            </th>
+                        </td>
                     </tr>
                 {{/each}}
             </tbody>
@@ -34,3 +63,5 @@
         </div>
     </div>
 {{/unless}}
+
+

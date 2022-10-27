@@ -1,0 +1,126 @@
+<form action="/doaddcomment/{{book.title}}" method="post" class="myForm">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col">
+                <h1>Comments</h1>
+            </div>
+        </div>
+        <fieldset class="border p-2 mb-3">
+            {{#ifSet comments username}}
+                <legend class="w-auto">Edit your comment</legend> 
+            {{else}}
+                <legend class="w-auto">Add your comment</legend> 
+            {{/ifSet}}
+            <div class="row mb-3">
+                <div class="col-md-2 col-sm-12 justify-content-end d-flex">
+                    <label for="newBookTitle" class="col-form-label">Title</label>
+                </div>
+                <div class="col-md-10 col-sm-10">
+                    <input style="background-color: #e9ecef;" type="text" class="form-control {{#if message.newBookTitle}} is-invalid {{/if}}" id="newBookTitle" value="{{book.title}}" name="newBookTitle" readonly>
+                    <div class="valid-feedback">Perfect!</div>
+                    <div class="invalid-feedback">{{message.newBookTitle.msg}}</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-2 col-sm-12 justify-content-end d-flex">
+                    <label for="newBookAuthor" class="col-form-label">Author</label>
+                </div>
+                <div class="col-md-10 col-sm-10 position-relative">
+                    <input style="background-color: #e9ecef;" type="text" class="form-control {{#if message.newBookAuthor}} is-invalid {{/if}}" id="newBookAuthor" value="{{book.author}}" name="newBookAuthor" readonly>
+                    <div class="valid-feedback">Perfect!</div>
+                    <div class="invalid-feedback">{{message.newBookAuthor.msg}}</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-2 col-sm-12 justify-content-end d-flex">
+                    <label for="newBookComment" class="col-form-label">Comment</label>
+                </div>
+                <div class="col-md-10 col-sm-10 position-relative">
+                    <input type="text" class="form-control 
+                    {{#if message.newBookComment}} is-invalid {{/if}}"
+                    {{#ifSet comments username}}
+                        {{#each comments}}
+                            {{#ifCond this.UserName ../username}}
+                            {{else}}
+                                value = "{{this.comment}}"
+                            {{/ifCond}}
+                        {{/each}}
+                    {{else}}
+                        value = "{{newBookComment}}"
+                    {{/ifSet}}       
+                    id="newBookComment" name="newBookComment"  placeholder="Write your comment about the Book" required>
+                    <div class="valid-feedback">Perfect!</div>
+                    <div class="invalid-feedback">{{message.newBookComment.msg}}</div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row mb-3">
+            {{#ifSet comments username}}
+            <div class="col">
+                <button type="submit" class="btn btn-primary mb-3">Update comment</button>
+                <a class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal{{@index}}">Delete comment</a>
+                <!-- Button trigger modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal{{@index}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete comment</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h5>Are you sure you want to delete your comment?</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger">
+                                <a style="color: #ffffff; text-decoration: none;" href="/deleteComment/{{book.title}}">Delete</a>
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="col">
+                <button type="submit" class="btn btn-primary mb-3">Create comment</button>
+            </div>
+            {{/ifSet}}
+        </div>
+        {{#ifallOtherCommentsNull comments username}}
+            <div class="row mt-5">
+                <div class="col">
+                    <h4>There are no comments from other users about <u>{{book.title}}</u></h4>
+                </div>
+            </div>
+        {{else}}
+            <div class="row mb3">
+                <div class="col">
+                    <h1>Others said...</h1>
+                </div>
+            </div>
+            <div class="table-responsive-sm">
+                <table class="table table-hover">
+                    <tread>
+                        <tr>
+                            <th><h3>Member</h3></th>
+                            <th><h3>Comment</h3></th>
+                        </tr>
+                    </tread>
+                    <tbody>
+                        {{#each comments}}
+                            {{#if this.comment}}
+                            {{#ifCond this.UserName ../username}}
+                            <tr>
+                                <td><h4>{{this.UserName}}</h4></td>
+                                <td colspan="2">{{this.comment}}</td>
+                            </tr>
+                            {{/ifCond}}
+                            {{/if}}
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        {{/ifallOtherCommentsNull}}
+    </div>
+</form>
