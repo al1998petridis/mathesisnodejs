@@ -11,14 +11,14 @@
     </div>
 </div>
 <div class="row mt-5" style="text-align: center;">
-    <p> You will be redirected in <span id="countdowntimer">5 </span> seconds...</p>
+    <p> You will be redirected in <span id="countdowntimer">3 </span> seconds...</p>
 </div>
 
 <script type="text/javascript">   
     setTimeout(function () {
-        window.location = window.parent.location.href;
-    }, 4750);
-    var timeleft = 5;
+        window.location = window.parent.location.href; //doesn't work because of route.get("/") and redirects to "/"
+    }, 2850);
+    var timeleft = 3;
     var downloadTimer = setInterval(function(){
     timeleft--;
     document.getElementById("countdowntimer").textContent = timeleft;
