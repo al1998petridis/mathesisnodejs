@@ -11,22 +11,18 @@
     </div>
 </div>
 <div class="row mt-5">
-    <p>You will be redirected in </p>
-    <p id="seconds"></p> 
-    <p> seconds...</p>
+    <p> You will be redirected in <span id="countdowntimer">5 </span> seconds...</p>
 </div>
 
-<script>
+<script type="text/javascript">
     setTimeout(function () {
         window.location = window.location.origin;
-    }, 3000)
-    setTimeout(function () {
-        document.getElementById("seconds").innerHTML = "3";
-    }, 1000)
-    setTimeout(function () {
-        document.getElementById("seconds").innerHTML = "2";
-    }, 1000)
-    setTimeout(function () {
-        document.getElementById("seconds").innerHTML = "1";
-    }, 1000)
+    }, 5000);
+    var timeleft = 5;
+    var downloadTimer = setInterval(function(){
+    timeleft--;
+    document.getElementById("countdowntimer").textContent = timeleft;
+    if(timeleft <= 0)
+        clearInterval(downloadTimer);
+    },1000);
 </script>
