@@ -14,14 +14,10 @@
     <p> You will be redirected in <span id="countdowntimer">5 </span> seconds...</p>
 </div>
 
-<script type="text/javascript">
-    console.log(window.location.origin);
-    console.log(window.top);
-    console.log(window.parent);
-    
-    {{!-- setTimeout(function () {
-        window.location = window.location.origin;
-    }, 4750); --}}
+<script type="text/javascript">   
+    setTimeout(function () {
+        window.location = window.parent.location.href;
+    }, 4750);
     var timeleft = 5;
     var downloadTimer = setInterval(function(){
     timeleft--;
