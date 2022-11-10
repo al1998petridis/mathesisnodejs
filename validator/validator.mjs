@@ -57,9 +57,8 @@ const validateNewUser = [
             if (!errors.isEmpty())
                 res.render("registrationform", {
                     message: errors.mapped(),
-                    username: req.session.username,
-                    password: req.session.password
-                })
+                    username: req.session.username
+            })
             else
                 next()
         }
