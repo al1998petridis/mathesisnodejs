@@ -15,20 +15,6 @@ const sequelizer = new Sequelize(process.env.DATABASE_URL, {
     }
 })
 
-// For localhost Postgres database
-// const sequelizer = new Sequelize({
-//     host: 'localhost',
-//     port: 5432,
-//     dialect: 'postgres',
-//     username: 'alepetpan',
-//     password: 'A6949390540a',
-//     database: 'myBooks',
-//     logging: false,
-//     define: {
-//         timestamps: false
-//     }
-// });
-
 const Book = sequelizer.define('Book', {
     title: {
         type: DataTypes.TEXT,
