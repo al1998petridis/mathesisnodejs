@@ -44,9 +44,3 @@ SESSION_SECRET=<your_session_secret>
 ```
 npm start
 ```
-
-
-## Usage
-
-After starting the application, open a web browser and navigate to `http://
-
