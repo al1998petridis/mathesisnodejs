@@ -18,22 +18,32 @@ This repository contains the source code for the Mathesis Node.js project. The p
 ## Installation
 
 1. Clone the repository:
-``` git clone https://github.com/apetridis/mathesisnodejs.git ```
+```
+git clone https://github.com/apetridis/mathesisnodejs.git 
+```
 
 2. Change to the project directory:
-``` cd mathesisnodejs ```
+```
+cd mathesisnodejs 
+```
 
 3. Install the dependencies:
-``` npm install ```
+```
+npm install 
+```
 
 4. Set up environment variables:
 
 Create a `.env` file in the project root directory with the following environment variables:
-``` MONGODB_URI=<your_mongodb_connection_string>
-SESSION_SECRET=<your_session_secret> ```
+``` 
+MONGODB_URI=<your_mongodb_connection_string>
+SESSION_SECRET=<your_session_secret>
+```
 
 5. Start the application:
-``` npm start ```
+```
+npm start
+```
 
 
 ## Usage
